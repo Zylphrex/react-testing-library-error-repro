@@ -1,0 +1,24 @@
+Run
+
+```bash
+yarn
+yarn test
+```
+
+And get something like
+
+```javascript
+/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom.development.js:3905
+      var evt = document.createEvent('Event');
+                         ^
+TypeError: Cannot read properties of null (reading 'createEvent')
+    at Object.invokeGuardedCallbackDev (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom.development.js:3905:26)
+    at invokeGuardedCallback (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom.development.js:4056:31)
+    at flushPassiveEffectsImpl (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom.development.js:23543:11)
+    at unstable_runWithPriority (/home/runner/work/sentry/sentry/node_modules/scheduler/cjs/scheduler.development.js:468:12)
+    at runWithPriority$1 (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom.development.js:11276:10)
+    at flushPassiveEffects (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom.development.js:23447:14)
+    at Object.<anonymous>.flushWork (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom-test-utils.development.js:992:10)
+    at Immediate.<anonymous> (/home/runner/work/sentry/sentry/node_modules/react-dom/cjs/react-dom-test-utils.development.js:1003:11)
+    at processImmediate (node:internal/timers:464:21)
+```
