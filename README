@@ -1,6 +1,7 @@
 Run
 
 ```bash
+git checkout jest-repro
 yarn
 yarn test
 ```
