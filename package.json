@@ -6,8 +6,6 @@
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
     "babel": "^6.23.0",
     "jest": "^27.5.1",
     "react": "17",
