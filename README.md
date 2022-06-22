@@ -26,6 +26,27 @@ TypeError: Cannot read property 'createEvent' of null
     at processImmediate (internal/timers.js:464:21)
 ```
 
+To find the test that this error originates from easier, apply this patch
+
+```bash
+patch node_modules/react-dom/cjs/react-dom-test-utils.development.js < react-dom-test-utils.development.js.patch
+yarn test
+```
+
+And now you get something like
+
+```bash
+ RUNS  ./test.js
+/Users/user/Documents/repos/react-testing-library-error-repro/node_modules/react-dom/cjs/react-dom-test-utils.development.js:1010
+      throw ex || err;
+      ^
+
+Test Failed: /Users/user/Documents/repos/react-testing-library-error-repro/test.js::it
+    at Object.act (/Users/user/Documents/repos/react-testing-library-error-repro/node_modules/react-dom/cjs/react-dom-test-utils.development.js:1072:16)
+    at /Users/user/Documents/repos/react-testing-library-error-repro/test.js:41:30
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+```
+
 Environment:
 ```bash
 $ npx envinfo

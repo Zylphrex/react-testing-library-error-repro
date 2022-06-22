@@ -1,0 +1,42 @@
+--- node_modules/react-dom/cjs/react-dom-test-utils.development.js	2022-06-22 09:44:47.000000000 -0400
++++ react-dom-test-utils.development.js	2022-06-22 09:44:53.000000000 -0400
+@@ -996,15 +996,19 @@
+   return didFlushWork;
+ };
+ 
+-function flushWorkAndMicroTasks(onDone) {
++function flushWorkAndMicroTasks(onDone, ex) {
+   try {
+     flushWork();
+     enqueueTask(function () {
++    try {
+       if (flushWork()) {
+         flushWorkAndMicroTasks(onDone);
+       } else {
+         onDone();
+       }
++    } catch (err) {
++      throw ex || err;
++    }
+     });
+   } catch (err) {
+     onDone(err);
+@@ -1064,6 +1068,9 @@
+     // effects and  microtasks in a loop until flushPassiveEffects() === false,
+     // and cleans up
+ 
++    const {testPath, currentTestName} = expect.getState();
++    const ex = new Error(`${testPath}::${currentTestName}`);
++    ex.name = 'Test Failed';
+ 
+     return {
+       then: function (resolve, reject) {
+@@ -1085,7 +1092,7 @@
+             } else {
+               resolve();
+             }
+-          });
++          }, ex);
+         }, function (err) {
+           onDone();
+           reject(err);
